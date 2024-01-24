@@ -18,12 +18,20 @@ def executar_testes(diretorio, arquivo_programa,arquivo_teste):
         print(testes_falhados)
         print(testes_passados)
         
-
+        # gera o relatorio do coverage no formato json
         subprocess.run(['coverage', 'json', '-o', 'resultado.json'])
 
         with open('resultado.json', 'r') as file:
             resultado_json = json.load(file)
-        print(resultado_json)
+            porcentagem_cobertura = resultado_json['totals']['percent_covered']
+        print("Porcentagem de cobertura:"+ str(porcentagem_cobertura))
+        #print(resultado_json)
+        
+        # gera o relatorio de cobertura
+        subprocess.run(['coverage', 'report', '-m'])
+
+
+
     else:
         print(f'O arquivo do programa/teste não foi encontrado.')
 '''
