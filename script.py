@@ -4,11 +4,12 @@ import coverage
 import json
 
 
-def executar_testes(diretorio, arquivo_teste):
-    caminho_arquivo = os.path.join(diretorio, arquivo_teste)
+def executar_testes(diretorio, arquivo_programa,arquivo_teste):
+    caminho_programa = os.path.join(diretorio, arquivo_programa)
+    caminho_teste = os.path.join(diretorio, arquivo_teste)
 
-    if os.path.exists(caminho_arquivo):
-        comando = ['coverage', 'run', '-m', 'pytest', caminho_arquivo]
+    if os.path.exists(caminho_programa and caminho_teste):
+        comando = ['coverage', 'run', '-m', 'pytest', caminho_programa, caminho_teste ]
         subprocess.run(comando)
         
         saida_pytest = subprocess.run(comando, capture_output=True, text=True)
@@ -24,7 +25,7 @@ def executar_testes(diretorio, arquivo_teste):
             resultado_json = json.load(file)
         print(resultado_json)
     else:
-        print(f'O arquivo de teste {caminho_arquivo} não foi encontrado.')
+        print(f'O arquivo do programa/teste não foi encontrado.')
 '''
 def executar_testes(diretorio, arquivo_teste):
     caminho_arquivo = os.path.join(diretorio, arquivo_teste)
@@ -44,8 +45,9 @@ def executar_testes(diretorio, arquivo_teste):
         print(f'O arquivo de teste {caminho_arquivo} não foi encontrado.')        
 '''
 if __name__ == '__main__':
-    diretorio = '/home/dks01/implementacaoTcc/src'
-    arquivo_teste = 'testeCoverageParidade.py'
+    diretorio = '/home/dks01/implementacao-tcc/src'
+    arquivo_programa = 'aluno01_programa.py'
+    arquivo_teste = 'aluno01_teste.py'
 
-    executar_testes(diretorio, arquivo_teste)
+    executar_testes(diretorio, arquivo_programa, arquivo_teste)
     
