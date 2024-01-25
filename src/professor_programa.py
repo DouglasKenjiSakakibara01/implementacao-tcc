@@ -1,3 +1,4 @@
+import pytest
 
 # Verifica a paridade do numero inteiro
 def verificaParidade(num):

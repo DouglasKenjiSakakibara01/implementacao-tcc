@@ -1,4 +1,4 @@
-from aluno01_programa import verificaParidade
+from professor_programa import verificaParidade
 
 def test_par():
     assert verificaParidade(150)=='par'
@@ -13,5 +13,7 @@ def test_impar():
     assert verificaParidade(1)=='impar'
     assert verificaParidade(0)=='impar'
 
-
+def test_outro():
+    assert verificaParidade(1)=='impar'
+    assert verificaParidade(90)=='impar'
     

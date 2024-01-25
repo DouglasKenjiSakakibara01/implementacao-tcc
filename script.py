@@ -78,8 +78,8 @@ def metrica_completude_testes(diretorio_programa, diretorio_teste):
 def metrica_correcao_programa(diretorio_programa, diretorio_teste):
     caminho_programa, caminho_teste = percorre_diretorio(diretorio_programa, diretorio_teste, 'aluno', 'professor')
     resultados = executar_testes(caminho_programa, caminho_teste)
-    retorno = (resultados['total']/resultados['passados']) * (resultados['cobertura']/100)
-    return retorno
+    retorno = (resultados['passados']/resultados['total']) * (resultados['cobertura']/100)
+    return round(retorno,2)
     
 # executa o programa e os testes do aluno( mede a taxa de sucesso(total_falhados/total_testes))
 def metrica_efetividade_testes(diretorio_programa, diretorio_teste):
@@ -100,5 +100,5 @@ if __name__ == '__main__':
     caminho_programa = '/home/dks01/implementacao-tcc/src/'
     caminho_teste = '/home/dks01/implementacao-tcc/src/'
     saida_metrica = metrica_efetividade_testes(caminho_programa, caminho_teste)
-    print('*-*-*-*-**-Metrica Efetividade dos testes do aluno*-*-*-*-*-*-*-**-*-**-')
+    print('*-*-*-*-**-Metrica*-*-*-*-*-*-*-**-*-**-')
     print(saida_metrica)
