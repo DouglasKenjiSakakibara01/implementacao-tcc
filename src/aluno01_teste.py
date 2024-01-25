@@ -12,3 +12,8 @@ def test_impar():
     assert verificaParidade(8)=='impar'
     assert verificaParidade(1)=='impar'
     assert verificaParidade(0)=='impar'
+
+def test_outro():
+    assert verificaParidade(1)=='impar'
+    assert verificaParidade(90)=='impar'
+    

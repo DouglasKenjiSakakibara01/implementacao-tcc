@@ -21,4 +21,4 @@ def test_paridade():
     assert verificaParidade(0)=='impar'
 
 
-
+    
