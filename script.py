@@ -16,7 +16,8 @@ def executar_testes(caminho_programa,caminho_teste):
         '''
         # executa os testes usando o pytest e gera o relatório JSON
         resultados={}
-        comando = ['pytest', '--json=reportPytest.json', caminho_programa, caminho_teste]
+        #comando = ['pytest', '--json=reportPytest.json', caminho_programa, caminho_teste]
+        comando = ['pytest', '--json=reportPytest.json', caminho_teste]
         subprocess.run(comando)
 
         # leitura do relatório JSON gerado pelo pytest
@@ -25,23 +26,29 @@ def executar_testes(caminho_programa,caminho_teste):
             testes_total =resultados_json['report']['summary']['num_tests']
             testes_passados = resultados_json['report']['summary']['passed']
             testes_falhados = resultados_json['report']['summary']['failed']
+            
 
         # gera o relatorio do coverage no formato json
+        subprocess.run(['coverage', 'run', f'{caminho_teste}'])    
         subprocess.run(['coverage', 'json', '-o', 'resultadoCoverage.json'])
-
+        
         with open('resultadoCoverage.json', 'r') as file:
-            resultado_json = json.load(file)
-            porcentagem_cobertura = resultado_json['totals']['percent_covered']
+            resultados_json = json.load(file)
+            
+            #porcentagem_cobertura = resultados_json['totals']['percent_covered']
+            porcentagem_cobertura = resultados_json['files'][f'{caminho_teste}']['summary']['percent_covered']
+
+
         
         # gera o relatorio de cobertura
-        subprocess.run(['coverage', 'report', '-m'])
+        subprocess.run(['coverage', 'report', f'{caminho_teste}'])
 
         resultados['total']= testes_total
         resultados['passados']= testes_passados
         resultados['falhados']= testes_falhados
         resultados['cobertura']= round(porcentagem_cobertura, 2)
-        #print(resultado)
-        return resultados
+        print(resultados)
+        return resultados 
 
     else:
         print(f'O arquivo do programa/teste não foi encontrado.')
@@ -90,15 +97,10 @@ def metrica_efetividade_testes(diretorio_programa, diretorio_teste):
     
 if __name__ == '__main__':
     
-    '''
-    diretorio = '/home/dks01/implementacao-tcc/src'
-    caminho_programa, caminho_teste = percorre_diretorio(diretorio, 'aluno')
-    resultados = executar_testes(caminho_programa, caminho_teste)
-    resultados = list(resultados)
-    print(resultados)
-    '''
-    caminho_programa = '/home/dks01/implementacao-tcc/src/'
-    caminho_teste = '/home/dks01/implementacao-tcc/src/'
-    saida_metrica = metrica_efetividade_testes(caminho_programa, caminho_teste)
+    
+    diretorio_programa = 'src/turma01/aluno01'
+    diretorio_teste = 'src/turma01/aluno01'
+    saida_metrica = metrica_efetividade_testes(diretorio_programa, diretorio_teste)
     print('*-*-*-*-**-Metrica*-*-*-*-*-*-*-**-*-**-')
     print(saida_metrica)
+    
