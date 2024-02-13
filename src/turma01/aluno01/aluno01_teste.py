@@ -1,4 +1,4 @@
-from aluno01_programa import tique
+#from aluno01_programa import tique
 
 def test_tique01():
     assert tique(12, 30, 45)== (12, 30, 46)

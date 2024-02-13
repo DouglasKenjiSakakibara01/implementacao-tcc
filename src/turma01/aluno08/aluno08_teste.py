@@ -1,4 +1,4 @@
-from aluno08_programa import tique
+#from aluno08_programa import tique
 
 # Testes automatizados com pytest
 #@pytest.fixture

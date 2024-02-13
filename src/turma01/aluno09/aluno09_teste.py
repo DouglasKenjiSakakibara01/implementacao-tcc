@@ -1,5 +1,5 @@
 # test_relogio_digital.py
-from aluno09_programa import tique
+#from aluno09_programa import tique
 import pytest
 
 # Testes para a operação Tique (Tick)

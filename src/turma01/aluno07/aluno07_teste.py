@@ -1,4 +1,4 @@
-from aluno07_programa import tique
+#from aluno07_programa import tique
 
 # Casos de teste:
 

@@ -1,4 +1,4 @@
-from aluno02_programa import tique
+#from aluno02_programa import tique
 
 # Testes para o método tique
 def test_01():

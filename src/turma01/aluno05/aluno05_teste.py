@@ -1,4 +1,4 @@
-from aluno05_programa import tique
+#from aluno05_programa import tique
 # função tique() - casos de teste
 def test_01():
 	assert tique(18, 10, 30) == (18, 10, 31)
